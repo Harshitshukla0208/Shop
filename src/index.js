@@ -95,6 +95,21 @@ app.post('/addproduct', async(req, res) => {
     })
 })
 
+app.post('/removeproduct', async(req, res) => {
+    await Product.findOneAndDelete({id: req.body.id});
+    console.log(`${req.body.name} has removed`);
+    res.json({
+        success: true,
+        name: req.body.name
+    })
+})
+
+app.get('/allproducts', async(req,res) => {
+    let products = await Product.find({});
+    console.log("all products fetched");
+    res.send(products);
+})
+
 // Start the server
 app.listen(PORT, async function () {
     console.log('Server started on port ' + PORT);
