@@ -201,6 +201,14 @@ app.post('/login', async(req,res) => {
     }
 })
 
+//creating endpoint for new collections
+app.get('/newcollections' ,async(req,res) => {
+    let products = await Product.find({});
+    let newcollection = products.slice(1).slice(-6); //usig this we get recently added 6 products
+    console.log("new collections fetched");
+    res.send(newcollection);
+})
+
 
 // Start the server
 app.listen(PORT, async function () {
