@@ -209,6 +209,14 @@ app.get('/newcollections' ,async(req,res) => {
     res.send(newcollection);
 })
 
+//creating end point for popular in women section
+app.get('/popularinwomen' ,async(req,res) => {
+    let products = await Product.find({category: "women"});
+    let newcollection = products.slice(0,3); //usig this we get recently added 6 products
+    console.log("popular in women fetched");
+    res.send(newcollection);
+})
+
 
 // Start the server
 app.listen(PORT, async function () {
